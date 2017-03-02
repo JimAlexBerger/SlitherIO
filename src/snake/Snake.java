@@ -8,29 +8,23 @@ import java.util.ArrayList;
 import java.awt.Toolkit;
 public class Snake {
 
-	private int snakeLength = 10;
-	private int timeMultiplier;
+	private int width;
+	private int height;
 	private Robot robot;
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-	//TO DO VARIEBLES
-	
-	//neural net
-	
-	//TO DO METHODS
-	public ArrayList<Color> gatherInfo() {
-		ArrayList<Color> array = new ArrayList<>();
-		array.add(robot.getPixelColor(20, 20));
-		array.add(robot.getPixelColor(40, 40));
-		array.add(robot.getPixelColor(60, 60));
-		array.add(robot.getPixelColor(80, 80));
-		array.add(robot.getPixelColor(100, 100));
-		return array;
-
+	public Color[] gatherInfo(int numPoints) {
+		Color[] points = new Color[numPoints];
+		for(int i = 0; i < numPoints; i++){
+			points[i] = robot.getPixelColor((width/2 + (int) Math.round(Math.cos(Math.toRadians(i)) * ((height/2)/numPoints)*i))  , (height/2 + (int) Math.round(Math.sin(Math.toRadians(i)) * ((height/2)/numPoints)*i)));
+		}
+		return points;
 	}
 	
 	public Snake() {
 		super();
+		this.width = screenSize.width;
+		this.height = screenSize.height;
 		try {
 			this.robot = new Robot();
 		} catch (AWTException e) {
@@ -39,14 +33,16 @@ public class Snake {
 	}
 
 	
-	//GETINPUTS(rgb values at screen put into array)
 	public void moveMouse(double angle) {
-		int x = (int) (Math.round(Math.cos(Math.toRadians(-angle))*50 + screenSize.width/2));
-		int y = (int) (Math.round(Math.sin(Math.toRadians(-angle))*50 + screenSize.height/2));
+		int x = (int) (Math.round(Math.cos(Math.toRadians(-angle))*50 + this.width/2));
+		int y = (int) (Math.round(Math.sin(Math.toRadians(-angle))*50 + this.height/2));
 		System.out.println(x);
 		System.out.println(y);
 		robot.mouseMove(x,y);
 	}
-	//FROM angle to mouse pos(use cos and sin)
+	
+	//TODO
+	//1. Function that reads points?
+	//2. 
 
 }
