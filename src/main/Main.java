@@ -13,6 +13,7 @@ public class Main {
 		System.out.println(Arrays.toString(n.update(new double[]{1,2,3,25})));
 		System.out.println(Arrays.toString(snake.gatherInfo(10)));
 
+
 		
 		
 		

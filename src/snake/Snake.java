@@ -4,8 +4,9 @@ import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Robot;
-import java.util.ArrayList;
 import java.awt.Toolkit;
+
+
 public class Snake {
 
 	private int width;
@@ -16,7 +17,7 @@ public class Snake {
 	public Color[] gatherInfo(int numPoints) {
 		Color[] points = new Color[numPoints];
 		for(int i = 0; i < numPoints; i++){
-			points[i] = robot.getPixelColor((width/2 + (int) Math.round(Math.cos(Math.toRadians(i)) * ((height/2)/numPoints)*i))  , (height/2 + (int) Math.round(Math.sin(Math.toRadians(i)) * ((height/2)/numPoints)*i)));
+			points[i] = robot.getPixelColor((width/2 + (int) Math.round(Math.cos(i) * ((height/2)/numPoints)*i))  , (height/2 + (int) Math.round(Math.sin(i) * ((height/2)/numPoints)*i)));
 		}
 		return points;
 	}
